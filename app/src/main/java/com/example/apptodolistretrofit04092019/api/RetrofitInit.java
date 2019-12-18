@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.OkHttpClient.Builder;
 import okhttp3.Protocol;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInit {
@@ -41,8 +42,9 @@ public class RetrofitInit {
                             .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(" https://khoapham.vn/KhoaPhamTraining/json/tien/")
+                    .baseUrl("http://172.16.1.17:8080/apiSinhvien/")
                     .client(okHttpClient)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         return retrofit;
